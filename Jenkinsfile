@@ -9,7 +9,7 @@ pipeline {
         STAGING = "chocoapp-staging"
         PRODUCTION = "chocoapp-prod"
         DOCKERHUB_ID = "choco1992"
-        DOCKERHUB_PASSWORD = credentials('dockerhub_password')
+        DOCKERHUB_PASSWORD = credentials('dockerhub')
         APP_NAME = "ulrich"
         STG_API_ENDPOINT = "100.25.147.76:1993"
         STG_APP_ENDPOINT = "100.25.147.76:8080"
