@@ -6,8 +6,8 @@ pipeline {
         IMAGE_NAME = "alpinehelloworld"
         APP_EXPOSED_PORT = "80"
         IMAGE_TAG = "latest"
-        STAGING = "chocoapp-staging"
-        PRODUCTION = "chocoapp-prod"
+        STAGING = "ulrich-staging"
+        PRODUCTION = "ulrich-prod"
         DOCKERHUB_ID = "choco1992"
         DOCKERHUB_PASSWORD = credentials('dockerhub')
         APP_NAME = "ulrich"
@@ -15,7 +15,7 @@ pipeline {
         STG_APP_ENDPOINT = "100.25.147.76:8080"
         PROD_API_ENDPOINT = "100.25.147.76:1993"
         PROD_APP_ENDPOINT = "100.25.147.76"
-        INTERNAL_PORT = "80"
+        INTERNAL_PORT = "5000"
         EXTERNAL_PORT = "${PORT_EXPOSED}"
         CONTAINER_IMAGE = "${DOCKERHUB_ID}/${IMAGE_NAME}:${IMAGE_TAG}"
     }
@@ -81,7 +81,7 @@ pipeline {
       steps {
           script {
             sh """
-              echo  {\\"your_name\\":\\"${APP_NAME}\\",\\"container_image\\":\\"${CONTAINER_IMAGE}\\", \\"external_port\\":\\"${EXTERNAL_PORT}80\\", \\"internal_port\\":\\"${INTERNAL_PORT}\\"}  > data.json 
+              echo  {\\"your_name\\":\\"${APP_NAME}\\",\\"container_image\\":\\"${CONTAINER_IMAGE}\\", \\"external_port\\":\\"${EXTERNAL_PORT}00\\", \\"internal_port\\":\\"${INTERNAL_PORT}\\"}  > data.json 
               curl -v -X POST http://${STG_API_ENDPOINT}/staging -H 'Content-Type: application/json'  --data-binary @data.json  2>&1 | grep 200
             """
           }
